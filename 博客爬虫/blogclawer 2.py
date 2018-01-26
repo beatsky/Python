@@ -43,7 +43,6 @@ def getImg(html):
 
     print time									# 爬完该篇博客图片后打印时间
     save(next)
-        
 
-save('###')
+save('ameblo.jp/xxx')
 
