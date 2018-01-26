@@ -20,8 +20,8 @@ def save(url):
 # 解析所需html部分
 def getImg(html):
     soup = BeautifulSoup(html, "html.parser")
-    nexturl = soup.select('.pagingNext')
-    next = nexturl[0].get('href')
+    next = soup.select('.pagingNext')
+    nexturl = next[0].get('href')
     print next                                  # 获取下一篇博客链接
     data = soup.select('.articleText')			# 找到对应文档节点
     img = data[0]								# 从list(长度为一)取出对应div下的内容
@@ -32,8 +32,7 @@ def getImg(html):
     mkdir(folder)								# 新建文件夹
     x = 0
     if len(imglist) == 0:						# 判断该篇博客是否有图片，没有则返回
-    	save(next)
-
+    	save(nexturl)
     else:
         for pic in imglist:						    # 遍历imglist下的<img>
             link = pic.get('src')  					# 获取img的src
@@ -42,7 +41,7 @@ def getImg(html):
             x+=1
 
     print time									# 爬完该篇博客图片后打印时间
-    save(next)
+    save(nexturl)
 
 save('ameblo.jp/xxx')
 
